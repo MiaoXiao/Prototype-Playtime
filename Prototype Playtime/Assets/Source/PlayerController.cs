@@ -6,9 +6,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float Speed = 30f;
 
-    [SerializeField]
-    private float SpellIntensity = 8f;
-
     private Rigidbody2D Rbody;
 
     private Light PointLight;
@@ -19,7 +16,7 @@ public class PlayerController : MonoBehaviour
 	void Awake ()
     {
         PointLight = transform.Find("Light Spell").GetComponent<Light>();
-        PointLight.intensity = 0;
+        PointLight.transform.gameObject.SetActive(false);
         Rbody = GetComponent<Rigidbody2D>();
 	}
 
@@ -32,7 +29,7 @@ public class PlayerController : MonoBehaviour
             //Vector3 heading = Input.mousePosition - Camera.main.WorldToScreenPoint(PointLight.transform.position);
             //AngleOffset = (Mathf.Atan2(PointLight.transform.right.y, PointLight.transform.right.x) - Mathf.Atan2(heading.y, heading.x)) * Mathf.Rad2Deg;
             MoveLight();
-            PointLight.intensity = 8;
+            PointLight.transform.gameObject.SetActive(true);
         }
         else if (Input.GetMouseButton(0))
         {
@@ -42,7 +39,7 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetMouseButtonUp(0))
         {
             //Debug.Log("mous up");
-            PointLight.intensity = 0;
+            PointLight.transform.gameObject.SetActive(false);
         }
         
         PlayerMovement();
