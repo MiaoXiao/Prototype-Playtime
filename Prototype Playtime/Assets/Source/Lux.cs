@@ -19,9 +19,12 @@ public class Lux : MonoBehaviour {
 
 	// On enter, start the timer.
 	void OnTriggerEnter2D (Collider2D lightTrigger) {
-		if (lightTrigger.tag == "Light" && source) {
-			detected = true;
-			StartCoroutine (timer ());
+		if (lightTrigger.tag == "Light") {
+			if (source) {
+				Debug.Log ("HI THERE");
+				detected = true;
+				StartCoroutine (timer ());
+			}
 		} else {
 			if (!source) {
 				StartCoroutine (Luminous ());
